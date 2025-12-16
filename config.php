@@ -1,7 +1,6 @@
 <?php
 $db = new mysqli("localhost", "root", "", "abhicares");
 
-$GEMINI_API_KEY = "AIzaSyDbgmYl9303QbMD_npGcbtgLkOG2UM4gj4";
 
 /**
  * Gemini embedding function
