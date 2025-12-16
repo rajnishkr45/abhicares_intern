@@ -1,505 +1,220 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-    <title>AbhiCares Support</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>AbhiCares Assistant</title>
+
     <style>
-        :root {
-            /* --- THEME COLORS --- */
-
-            /* Sending (User) - Light Blue Gradient */
-            --user-gradient: #3b82f6;
-            --user-text: #ffffff;
-
-            /* Receiving (Bot) - Pure White */
-            --bot-bg: #d6e3ed;
-            --bot-text: #000000;
-
-            /* Header Color - Matching Blue */
-            --header-bg: #3b82f6;
-
-            /* Background behind the phone/app */
-            --body-bg: #f1f5f9;
-
-            /* Shadows */
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #282828;
-            width: 5px;
-        }
-
         body {
-            margin: 0;
-            background: var(--body-bg);
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-            height: 100vh;
+            background: #f0f2f5;
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .chat-container {
+            width: 380px;
+            height: 550px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
         }
 
-        .app-container {
-            width: 100%;
-            max-width: 800px;
-            height: 100%;
-            max-height: 100vh;
-            background: #ffffff;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        /* Desktop Shadow only */
-        @media(min-width: 800px) {
-            .app-container {
-                height: 90vh;
-                border-radius: 20px;
-                box-shadow: var(--shadow-md);
-                overflow: hidden;
-            }
-        }
-
-        /* --- HEADER --- */
         .chat-header {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 24px;
-            background: var(--header-bg);
-            z-index: 10;
+            background: #0b5ed7;
             color: white;
-            border-bottom: solid 1px #282828;
+            padding: 15px;
+            font-weight: bold;
+            text-align: center;
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #fcb992;
-            color: var(--header-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .title {
-            font-weight: 700;
-            font-size: 17px;
-            color: #ffffff;
-        }
-
-        .subtitle {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-top: 2px;
-        }
-
-        /* --- MESSAGES AREA (Faded BG) --- */
-        .messages {
+        .chat-body {
             flex: 1;
-            padding: 24px;
+            padding: 10px;
             overflow-y: auto;
+            background: #e5ddd5;
+        }
+
+        .message {
+            padding: 10px 14px;
+            max-width: 75%;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease-in;
+            white-space: pre-wrap;
+            /* 🔥 THIS FIXES SPACING */
+            word-wrap: break-word;
+        }
+
+
+        .user {
+            background: #dcf8c6;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .bot {
+            background: #fff;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        .typing {
+            font-style: italic;
+            color: #555;
+            font-size: 13px;
+            margin: 5px 0;
+        }
+
+        .chat-footer {
             display: flex;
-            flex-direction: column;
-            gap: 18px;
-            scroll-behavior: smooth;
-            background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+            padding: 10px;
+            background: #f0f0f0;
         }
 
-        .message-row {
-            display: flex;
-            width: 100%;
-        }
-
-        .row-left {
-            justify-content: flex-start;
-        }
-
-        .row-right {
-            justify-content: flex-end;
-        }
-
-        .bubble {
-            max-width: 80%;
-            padding: 14px 18px;
-            border-radius: 18px;
-            font-size: 15px;
-            line-height: 1.6;
-            position: relative;
-            box-shadow: var(--shadow-sm);
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .bubble.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* BOT MESSAGE: White */
-        .bubble.assistant {
-            background: var(--bot-bg);
-            color: var(--bot-text);
-            border-bottom-left-radius: 4px;
-            border: 1px solid rgba(0, 0, 0, 0.03);
-        }
-
-        /* USER MESSAGE: Light Blue */
-        .bubble.user {
-            background: var(--user-gradient);
-            color: var(--user-text);
-            border-bottom-right-radius: 4px;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
-        }
-
-        .bubble-text b {
-            font-weight: 700;
-        }
-
-        .bubble-meta {
-            font-size: 11px;
-            margin-top: 6px;
-            opacity: 0.7;
-            text-align: right;
-            font-weight: 500;
-        }
-
-        /* --- INPUT AREA --- */
-        .composer {
-            flex-shrink: 0;
-            padding: 20px 24px;
-            background: white;
-            border-top: 1px solid #f1f5f9;
-            display: flex;
-            gap: 12px;
-            align-items: flex-end;
-        }
-
-        .composer textarea {
+        .chat-footer input {
             flex: 1;
-            padding: 14px 18px;
-            border-radius: 24px;
-            border: 1px solid #e2e8f0;
-            background: #f8fafc;
-            resize: none;
-            height: 52px;
-            max-height: 140px;
-            font-family: inherit;
-            font-size: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             outline: none;
-            color: #334155;
-            transition: border 0.2s, box-shadow 0.2s;
         }
 
-        .composer textarea:focus {
-            border-color: #3b82f6;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-        }
-
-        #send {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: var(--user-gradient);
+        .chat-footer button {
+            margin-left: 8px;
+            padding: 10px 15px;
+            background: #0b5ed7;
             border: none;
             color: white;
+            border-radius: 5px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.1s;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
-        #send:active {
-            transform: scale(0.95);
+        .chat-footer button:hover {
+            background: #084298;
         }
 
-        #send svg {
-            width: 22px;
-            height: 22px;
-            fill: white;
-            margin-left: 3px;
-        }
-
-        @media (max-width: 600px) {
-            .app-container {
-                border-radius: 0;
-                height: 100vh;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
             }
 
-            .chat-header,
-            .composer {
-                border-radius: 0;
-            }
-
-            .bubble {
-                max-width: 88%;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="app-container">
-        <header class="chat-header">
-            <div class="header-left">
-                <div class="avatar">🤖</div>
-                <div>
-                    <div class="title">AbhiCares Support</div>
-                    <div class="subtitle">Your virtual assistant</div>
-                </div>
-            </div>
-        </header>
 
-        <section id="messages" class="messages"></section>
+    <div class="chat-container">
+        <div class="chat-header">
+            AbhiCares Virtual Assistant
+        </div>
 
-        <form id="composer" class="composer" autocomplete="off">
-            <textarea id="input" placeholder="Type your message..." rows="1"></textarea>
-            <button type="button" id="send">
-                <svg viewBox="0 0 24 24">
-                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-                </svg>
-            </button>
-        </form>
+        <div class="chat-body" id="chat"></div>
+
+        <div class="chat-footer">
+            <input id="msg" placeholder="Type your message..." onkeydown="if(event.key==='Enter') send()">
+            <button onclick="send()">Send</button>
+        </div>
     </div>
 
     <script>
-        // --- STATE MANAGEMENT ---
-        let chatState = {
-            step: 0, // 0=Waiting for Name, 1=Waiting for Lang, 2=Support Mode
-            userName: '',
-            userLang: ''
+        const chat = document.getElementById("chat");
+        const msgInput = document.getElementById("msg");
+
+        /* 🔹 Initial Greeting */
+        window.onload = () => {
+            addBotMessage("Hello 👋 I am AbhiCares virtual assistant. How can I help you today?");
         };
 
-        // --- KNOWLEDGE BASE ---
-        const knowledgeBase = [
-            // GREETINGS & BASICS
-            { k: ['hi', 'hello', 'hey'], r: "Hello again! How can I assist you right now?" },
-            { k: ['contact', 'call', 'number'], r: "📞 Support Line: <b>(555) 123-4567</b>.<br>We are available 24/7." },
+        /* 🔹 Add messages */
+        function addUserMessage(text) {
+            const div = document.createElement("div");
+            div.className = "message user";
+            div.innerText = text;
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+        }
 
-            // PRICING
-            { k: ['price', 'cost', 'fee'], r: "💰 <b>Service Fee:</b> $49 (Visit & Diagnosis).<br>Repair costs are quoted on-site after inspection." },
+        function addBotMessage(text) {
+            const div = document.createElement("div");
+            div.className = "message bot";
+            div.innerText = text;
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+        }
 
-            // HVAC
-            { k: ['ac', 'cooling', 'warm'], r: "❄️ <b>AC Issue:</b> If it's blowing warm, check your thermostat settings first.<br>It could also be low refrigerant." },
-            { k: ['leak', 'water', 'drip'], r: "💧 <b>Leak Detected:</b> Turn off the unit immediately to prevent ceiling damage.<br>It's likely a clogged drain line." },
+        /* 🔹 Typing indicator */
+        function showTyping() {
+            const div = document.createElement("div");
+            div.id = "typing";
+            div.className = "typing";
+            div.innerText = "AbhiCares is typing...";
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+        }
 
-            // PLUMBING
-            { k: ['toilet', 'clog'], r: "🚽 <b>Clogged Toilet:</b> Try a plunger.<br>If water rises, turn off the valve behind the toilet clockwise." },
-            { k: ['sink', 'drain'], r: "🚰 <b>Slow Drain:</b> Avoid harsh chemicals.<br>We can snake the drain for $89." },
+        function removeTyping() {
+            const typing = document.getElementById("typing");
+            if (typing) typing.remove();
+        }
 
-            // SCHEDULING
-            { k: ['book', 'schedule', 'appointment'], r: "📅 I can help with that.<br>Please provide your <b>Phone Number</b> and preferred <b>Time</b>." },
-        ];
+        /* 🔹 Send message */
+        function send() {
+            const message = msgInput.value.trim();
+            if (!message) return;
 
-        const defaultResponse = "I didn't quite catch that. Could you describe the issue? (e.g., 'Leaky faucet', 'No power')";
+            addUserMessage(message);
+            msgInput.value = "";
 
-        // --- FUZZY LOGIC ---
-        function findBestMatch(userText) {
-            const tokens = userText.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/);
-            let bestMatch = null;
-            let maxScore = 0;
+            showTyping();
 
-            knowledgeBase.forEach(entry => {
-                let score = 0;
-                entry.k.forEach(keyword => {
-                    tokens.forEach(t => {
-                        if (t.includes(keyword) || keyword.includes(t)) score++;
-                    });
+            fetch("chat.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "message=" + encodeURIComponent(message)
+            })
+                .then(res => res.text())
+                .then(reply => {
+                    removeTyping();
+                    typeBotMessage(reply);
                 });
-                if (score > maxScore) {
-                    maxScore = score;
-                    bestMatch = entry;
-                }
-            });
-
-            return (maxScore > 0) ? bestMatch.r : defaultResponse;
         }
 
-        // --- DOM ELEMENTS ---
-        const messagesEl = document.getElementById('messages');
-        const inputEl = document.getElementById('input');
-        const sendBtn = document.getElementById('send');
-
-        // --- UI FUNCTIONS ---
-        function formatTime() {
-            return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        }
-
-        function scrollToBottom() {
-            messagesEl.scrollTop = messagesEl.scrollHeight;
-        }
-
-        function addBubble(role, htmlContent, isTyping = false) {
-            const row = document.createElement('div');
-            row.className = `message-row ${role === 'user' ? 'row-right' : 'row-left'}`;
-
-            const bubble = document.createElement('div');
-            bubble.className = `bubble ${role}`;
-
-            // Create inner containers
-            const textDiv = document.createElement('div');
-            textDiv.className = 'bubble-text';
-            // If typing, we start empty, otherwise full text
-            textDiv.innerHTML = isTyping ? '•••' : htmlContent;
-
-            const metaDiv = document.createElement('div');
-            metaDiv.className = 'bubble-meta';
-            metaDiv.innerText = isTyping ? '' : formatTime();
-
-            bubble.appendChild(textDiv);
-            bubble.appendChild(metaDiv);
-            row.appendChild(bubble);
-            messagesEl.appendChild(row);
-
-            scrollToBottom();
-            requestAnimationFrame(() => bubble.classList.add('visible'));
-            return bubble;
-        }
-
-        /**
-         * SMART TYPEWRITER: Handles HTML tags correctly
-         */
-        function typeText(bubble, htmlString) {
-            const textDiv = bubble.querySelector('.bubble-text');
-            textDiv.innerHTML = ''; // Clear "..."
+        /* 🔹 Typing animation for bot reply */
+        function typeBotMessage(text) {
+            const div = document.createElement("div");
+            div.className = "message bot";
+            chat.appendChild(div);
 
             let i = 0;
-            const speed = 20; // Typing speed in ms
+            const speed = 20;
 
             function type() {
-                if (i < htmlString.length) {
-                    let char = htmlString.charAt(i);
-
-                    // If we encounter a tag start '<', find the end '>' and append the whole tag
-                    if (char === '<') {
-                        const tagEnd = htmlString.indexOf('>', i);
-                        if (tagEnd !== -1) {
-                            textDiv.innerHTML += htmlString.substring(i, tagEnd + 1);
-                            i = tagEnd + 1;
-                        } else {
-                            textDiv.innerHTML += char;
-                            i++;
-                        }
-                    } else {
-                        // Normal character
-                        textDiv.innerHTML += char;
-                        i++;
-                    }
-
-                    scrollToBottom();
+                if (i < text.length) {
+                    div.innerText += text.charAt(i);
+                    i++;
+                    chat.scrollTop = chat.scrollHeight;
                     setTimeout(type, speed);
-                } else {
-                    // Finished typing, show time
-                    bubble.querySelector('.bubble-meta').innerText = formatTime();
                 }
             }
-
             type();
         }
-
-        function processUserMessage() {
-            const text = inputEl.value.trim();
-            if (!text) return;
-
-            // 1. User Message
-            addBubble('user', text);
-            inputEl.value = '';
-            inputEl.style.height = '52px';
-
-            // 2. Bot Response Container (Thinking...)
-            const botBubble = addBubble('assistant', '', true);
-
-            // 3. Logic Delay
-            setTimeout(() => {
-                let reply = "";
-
-                if (chatState.step === 0) {
-                    // User gave name
-                    chatState.userName = text;
-                    chatState.step = 1;
-                    reply = `Nice to meet you, <b>${chatState.userName}</b>! 👋<br><br>Which language do you prefer? (English, Hindi, etc.)`;
-                }
-                else if (chatState.step === 1) {
-                    // User gave language
-                    chatState.userLang = text;
-                    chatState.step = 2;
-                    reply = `Got it. I'll speak in <b>${chatState.userLang}</b>.<br><br>So, how can I help you today?<br><i>(e.g., "AC leak", "Pricing", "Book appointment")</i>`;
-                }
-                else {
-                    // Normal Chat
-                    reply = findBestMatch(text);
-                }
-
-                typeText(botBubble, reply);
-
-            }, 800);
-        }
-
-        // --- EVENTS ---
-        sendBtn.addEventListener('click', processUserMessage);
-
-        inputEl.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                processUserMessage();
-            }
-        });
-
-        inputEl.addEventListener('input', function () {
-            this.style.height = 'auto';
-            this.style.height = Math.min(this.scrollHeight, 140) + 'px';
-        });
-
-        // --- ONBOARDING FLOW ---
-        function startConversation() {
-            // 1. Welcome Message
-            setTimeout(() => {
-                const b1 = addBubble('assistant', '', true);
-                typeText(b1, "Welcome to <b>AbhiCares</b>! 🛠️<br>I'm your virtual assistant.");
-
-                // 2. Ask Name (After a delay)
-                setTimeout(() => {
-                    const b2 = addBubble('assistant', '', true);
-                    typeText(b2, "Before we begin, may I know your <b>Name</b>?");
-                }, 1500);
-
-            }, 500);
-        }
-
-        window.onload = startConversation;
-
     </script>
+
 </body>
 
 </html>
