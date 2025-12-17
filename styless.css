@@ -1,0 +1,230 @@
+ /* --- MODERN THEME VARIABLES --- */
+ :root {
+     --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+     --glass-bg: rgba(255, 255, 255, 0.75);
+     --glass-border: rgba(255, 255, 255, 0.9);
+     --primary-blue: #5caefa;
+     --msg-user-bg: linear-gradient(135deg, #66a6ff 0%, #007AFF 100%);
+     --msg-bot-bg: #eaeaea;
+     --text-dark: #333;
+ }
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Inter', sans-serif;
+ }
+
+ body {
+     background: var(--bg-gradient);
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ /* --- CHAT CONTAINER --- */
+ .chat-container {
+     width: 100%;
+     max-width: 400px;
+     height: 90vh;
+     background: var(--glass-bg);
+     backdrop-filter: blur(20px);
+     -webkit-backdrop-filter: blur(20px);
+     border-radius: 24px;
+     border: 1px solid var(--glass-border);
+     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+     display: flex;
+     flex-direction: column;
+     overflow: hidden;
+ }
+
+ /* --- HEADER --- */
+ .chat-header {
+     padding: 15px 20px;
+     background: var(--primary-blue);
+     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+     display: flex;
+     align-items: center;
+ }
+
+ .profile-pic {
+     width: 40px;
+     height: 40px;
+     background-color: var(--primary-blue);
+     border-radius: 50%;
+     margin-right: 12px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-weight: bold;
+ }
+
+ .header-info h4 {
+     font-size: 16px;
+     color: #ffffff;
+ }
+
+ .header-info p {
+     font-size: 12px;
+     color: rgb(0, 255, 68);
+     font-weight: 500;
+ }
+
+ /* --- CHAT BODY --- */
+ .chat-body {
+     flex: 1;
+     padding: 20px;
+     overflow-y: auto;
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+ }
+
+ /* Hide scrollbar */
+ .chat-body::-webkit-scrollbar {
+     display: none;
+ }
+
+ /* --- MESSAGES --- */
+ .message {
+     max-width: 80%;
+     padding: 12px 16px;
+     border-radius: 16px;
+     font-size: 14px;
+     line-height: 1.5;
+     animation: slideUp 0.3s ease;
+     position: relative;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+ }
+
+ .bot-msg {
+     align-self: flex-start;
+     background: var(--msg-bot-bg);
+     color: var(--text-dark);
+     border-top-left-radius: 4px;
+ }
+
+ .user-msg {
+     align-self: flex-end;
+     background: var(--msg-user-bg);
+     color: white;
+     border-top-right-radius: 4px;
+ }
+
+ /* --- TYPING ANIMATION --- */
+ .typing-indicator {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: 10px;
+     gap: 5px;
+ }
+
+ .typing-dot {
+     width: 6px;
+     height: 6px;
+     background-color: #aaa;
+     border-radius: 50%;
+     animation: bounce 1.4s infinite ease-in-out both;
+ }
+
+ .typing-dot:nth-child(1) {
+     animation-delay: -0.32s;
+ }
+
+ .typing-dot:nth-child(2) {
+     animation-delay: -0.16s;
+ }
+
+ @keyframes bounce {
+
+     0%,
+     80%,
+     100% {
+         transform: scale(0);
+     }
+
+     40% {
+         transform: scale(1);
+     }
+ }
+
+ /* --- OPTIONS BUTTONS (Language) --- */
+ .options-container {
+     display: flex;
+     gap: 8px;
+     flex-wrap: wrap;
+     margin-top: -5px;
+     animation: slideUp 0.4s ease;
+ }
+
+ .option-btn {
+     background: #ffffff;
+     border: 1px solid #007AFF;
+     color: #007AFF;
+     padding: 8px 16px;
+     border-radius: 20px;
+     font-size: 13px;
+     cursor: pointer;
+     transition: all 0.2s;
+     box-shadow: 0 2px 5px rgba(0, 122, 255, 0.1);
+ }
+
+ .option-btn:hover {
+     background: #007AFF;
+     color: white;
+     transform: translateY(-2px);
+ }
+
+ /* --- FOOTER --- */
+ .chat-footer {
+     padding: 15px;
+     background: rgba(255, 255, 255, 0.9);
+     display: flex;
+     gap: 10px;
+     border-top: 1px solid rgba(0, 0, 0, 0.05);
+ }
+
+ input {
+     flex: 1;
+     padding: 12px 20px;
+     border-radius: 30px;
+     border: 1px solid #ddd;
+     outline: none;
+     background: white;
+     transition: 0.3s;
+ }
+
+ input:focus {
+     border-color: #007AFF;
+ }
+
+ button.send-btn {
+     background: #007AFF;
+     border: none;
+     width: 45px;
+     height: 45px;
+     border-radius: 50%;
+     color: white;
+     cursor: pointer;
+     font-size: 18px;
+     transition: transform 0.2s;
+ }
+
+ button.send-btn:hover {
+     transform: scale(1.05);
+ }
+
+ @keyframes slideUp {
+     from {
+         opacity: 0;
+         transform: translateY(10px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }

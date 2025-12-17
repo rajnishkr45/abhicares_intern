@@ -1,40 +1,29 @@
 <?php
-$db = new mysqli("localhost", "root", "", "abhicares");
+// config.php
 
+header('Content-Type: application/json');
 
-/**
- * Gemini embedding function
- */
-function getEmbedding($text, $apiKey) {
+// Database Credentials
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'abhicares');
 
-    $url = "https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=$apiKey";
+// Gemini API Key (recommended via env or secrets.php)
+define('GEMINI_API_KEY', 'AIzaSyDbgmYl9303QbMD_npGcbtgLkOG2UM4gj4');
 
-    $data = [
-        "content" => [
-            "parts" => [
-                ["text" => $text]
-            ]
-        ]
-    ];
+// Enable MySQLi error reporting
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-    $options = [
-        "http" => [
-            "method"  => "POST",
-            "header"  => "Content-Type: application/json",
-            "content" => json_encode($data),
-            "ignore_errors" => true
-        ]
-    ];
-
-    $response = file_get_contents($url, false, stream_context_create($options));
-
-    if ($response === false) {
-        return null;
-    }
-
-    $json = json_decode($response, true);
-
-    return $json["embedding"]["values"] ?? null;
+try {
+    $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $db->set_charset("utf8mb4");
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode([
+        "status" => "error",
+        "reply"  => "Database connection failed."
+    ]);
+    exit;
 }
-
 ?>
