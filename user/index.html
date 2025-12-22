@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhicares Support</title>
+
+    <!-- Icons & Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styless.css">
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="profile-pic">
+                <img src="./logo.png">
+            </div>
+            <div class="header-info">
+                <h4>Abhicares Support</h4>
+                <p>•Online</p>
+            </div>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fas fa-ellipsis-v"></i>
+            </div>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            <div class="message bot-msg">Hello 👋 How can I help you?</div>
+
+            <!-- Typing indicator -->
+            <div id="typing" class="typing-wrapper hidden">
+                <div class="typing-msg">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleEnter(event)">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+
+        <div id="menu" class="menu">
+            <div onclick="location.reload()">Restart Chat</div>
+        </div>
+    </div>
+
+   <script src="./scripts.js"></script>
+</body>
+
+</html>
