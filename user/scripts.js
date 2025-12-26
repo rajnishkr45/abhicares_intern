@@ -42,7 +42,7 @@ let state = {
 window.onload = () => {
     // There is already a "Hello" in HTML, so we follow up immediately
     setTimeout(() => {
-        addBotMessage("To get started, may I know your name?");
+        addBotMessage("Before we start, <strong>please tell me your name?</strong>");
         state.step = 1;
     }, 1000);
 };

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbhiCares - Home Services</title>
+    <link rel="shortcut icon" href="./user/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <img src="./user/logo.png" alt=""> AbhiCares
+        </div>
+        <div class="nav-right">
+            <div class="cart-wrapper">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-badge" class="cart-badge hidden">0</span>
+            </div>
+            <div class="login-link">Login</div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Home services, on demand.</h1>
+        <p>Hygienic, safe and affordable services at your doorstep.</p>
+
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for 'AC Repair', 'Painting'...">
+        </div>
+
+    </header>
+
+    <section class="section">
+        <div class="section-title">
+            <h2>What are you looking for?</h2>
+            <p>Select a category to get started</p>
+        </div>
+
+        <div class="category-grid">
+            <div class="category-card">
+                <i class="fas fa-female"></i>
+                <h3>Salon for Women</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-cut"></i>
+                <h3>Haircut for Men</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-snowflake"></i>
+                <h3>AC & Appliance</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-broom"></i>
+                <h3>Cleaning</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-wrench"></i>
+                <h3>Plumbers</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-plug"></i>
+                <h3>Electricians</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="section bg-light">
+        <div class="section-title">
+            <h2>Trending in Your Area</h2>
+            <p>Most booked services near you</p>
+        </div>
+
+        <div class="slider-container">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                    class="product-img">
+                <div class="product-info">
+                    <span class="product-rating"><i class="fas fa-star"></i> 4.8</span>
+                    <h3 class="product-title">Bathroom Deep Clean</h3>
+                    <p class="product-price">Starts at ₹399</p>
+                    <button class="book-btn" onclick="addToCart()">Book Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    class="product-img">
+                <div class="product-info">
+                    <span class="product-rating"><i class="fas fa-star"></i> 4.9</span>
+                    <h3 class="product-title">Spa Manicure</h3>
+                    <p class="product-price">₹499</p>
+                    <button class="book-btn" onclick="addToCart()">Book Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    class="product-img">
+                <div class="product-info">
+                    <span class="product-rating"><i class="fas fa-star"></i> 4.9</span>
+                    <h3 class="product-title">Stress Relief Massage</h3>
+                    <p class="product-price">Starts at ₹999</p>
+                    <button class="book-btn" onclick="addToCart()">Book Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80"
+                    class="product-img">
+                <div class="product-info">
+                    <span class="product-rating"><i class="fas fa-star"></i> 4.7</span>
+                    <h3 class="product-title">AC Service & Repair</h3>
+                    <p class="product-price">Starts at ₹599</p>
+                    <button class="book-btn" onclick="addToCart()">Book Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80"
+                    class="product-img">
+                <div class="product-info">
+                    <span class="product-rating"><i class="fas fa-star"></i> 4.5</span>
+                    <h3 class="product-title">Men's Haircut</h3>
+                    <p class="product-price">Starts at ₹299</p>
+                    <button class="book-btn" onclick="addToCart()">Book Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1587563871167-1ee9c731aef4?auto=format&fit=crop&w=600&q=80"
+                    class="product-img">
+                <div class="product-info">
+                    <span class="product-rating"><i class="fas fa-star"></i> 4.7</span>
+                    <h3 class="product-title">Pest Control</h3>
+                    <p class="product-price">Starts at ₹999</p>
+                    <button class="book-btn" onclick="addToCart()">Book Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=600&q=80"
+                    class="product-img">
+                <div class="product-info">
+                    <span class="product-rating"><i class="fas fa-star"></i> 4.8</span>
+                    <h3 class="product-title">Electrician Visit</h3>
+                    <p class="product-price">Starts at ₹199</p>
+                    <button class="book-btn" onclick="addToCart()">Book Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=600&q=80"
+                    class="product-img">
+                <div class="product-info">
+                    <span class="product-rating"><i class="fas fa-star"></i> 4.6</span>
+                    <h3 class="product-title">Plumber Services</h3>
+                    <p class="product-price">Starts at ₹249</p>
+                    <button class="book-btn" onclick="addToCart()">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trending in Your Area</h2>
+                <p>Most booked services near you</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="product-card">
+                    <span class="badge">Best Seller</span>
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.8</span>
+                        <h3 class="product-title">Bathroom Deep Clean</h3>
+                        <p class="product-price">Starts at ₹399</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.9</span>
+                        <h3 class="product-title">Spa Manicure</h3>
+                        <p class="product-price">₹499</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="badge red">50% OFF</span>
+                    <img src="https://images.unsplash.com/photo-1581578731117-104f2a41272c?auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.7</span>
+                        <h3 class="product-title">Sofa Cleaning</h3>
+                        <p class="product-price">Starts at ₹799</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.6</span>
+                        <h3 class="product-title">AC Service & Repair</h3>
+                        <p class="product-price">Starts at ₹599</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Salon & Spa at Home</h2>
+                <p>Grooming and relaxation services</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.9</span>
+                        <h3 class="product-title">Stress Relief Massage</h3>
+                        <p class="product-price">Starts at ₹999</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.5</span>
+                        <h3 class="product-title">Men's Haircut</h3>
+                        <p class="product-price">Starts at ₹299</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.8</span>
+                        <h3 class="product-title">Classic Facial</h3>
+                        <p class="product-price">Starts at ₹699</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.7</span>
+                        <h3 class="product-title">Pedicure & Manicure</h3>
+                        <p class="product-price">Starts at ₹599</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Home Repairs & Cleaning</h2>
+                <p>Expert technicians at your doorstep</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=600&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.8</span>
+                        <h3 class="product-title">Electrician Visit</h3>
+                        <p class="product-price">Starts at ₹199</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=600&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.6</span>
+                        <h3 class="product-title">Plumber Services</h3>
+                        <p class="product-price">Starts at ₹249</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="badge">Eco-Friendly</span>
+                    <img src="https://images.unsplash.com/photo-1587563871167-1ee9c731aef4?auto=format&fit=crop&w=600&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.7</span>
+                        <h3 class="product-title">Pest Control</h3>
+                        <p class="product-price">Starts at ₹999</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1601056639638-cd5295c4729e?auto=format&fit=crop&w=600&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.5</span>
+                        <h3 class="product-title">Carpentry Work</h3>
+                        <p class="product-price">Starts at ₹299</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Appliance Repair</h2>
+                <p>Fix your home appliances quickly</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1571175443880-49e1d58b794a?auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.9</span>
+                        <h3 class="product-title">Refrigerator Repair</h3>
+                        <p class="product-price">Starts at ₹399</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.7</span>
+                        <h3 class="product-title">Washing Machine</h3>
+                        <p class="product-price">Starts at ₹499</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1585837575652-2c9648d66031?auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.8</span>
+                        <h3 class="product-title">Microwave Repair</h3>
+                        <p class="product-price">Starts at ₹349</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="product-card">~
+                    <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&w=800&q=80"
+                        class="product-img">
+                    <div class="product-info">
+                        <span class="product-rating"><i class="fas fa-star"></i> 4.6</span>
+                        <h3 class="product-title">RO Purifier Service</h3>
+                        <p class="product-price">Starts at ₹299</p>
+                        <button class="book-btn" onclick="addToCart()">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="trust-banner">
+        <div class="trust-text">
+            <h2>100% Quality Assured</h2>
+            <div class="trust-points">
+                <p><i class="fas fa-check-circle"></i> Verified Professionals</p>
+                <p><i class="fas fa-check-circle"></i> Transparent Pricing</p>
+                <p><i class="fas fa-check-circle"></i> Insured Work</p>
+                <p><i class="fas fa-check-circle"></i> 24/7 Customer Support</p>
+            </div>
+        </div>
+        <div class="trust-img">
+            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                alt="Quality Promise">
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li>About Us</li>
+                    <li>Terms & Conditions</li>
+                    <li>Privacy Policy</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>For Customers</h4>
+                <ul>
+                    <li>Reviews</li>
+                    <li>Categories</li>
+                    <li>Blog</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>help@urbancompany.com</li>
+                    <li>+91 123 456 7890</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Social Links</h4>
+                <ul>
+                    <li><i class="fab fa-facebook"></i> Facebook</li>
+                    <li><i class="fab fa-instagram"></i> Instagram</li>
+                    <li><i class="fab fa-twitter"></i> Twitter</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Urban Company Clone. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // 1. Navbar Scroll Effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Cart Logic
+        let cartCount = 0;
+        const badge = document.getElementById('cart-badge');
+
+        function addToCart() {
+            cartCount++;
+            badge.innerText = cartCount;
+            badge.classList.remove('hidden');
+
+            // Re-trigger animation
+            badge.classList.remove('pop-anim');
+            void badge.offsetWidth; // trigger reflow
+            badge.classList.add('pop-anim');
+        }
+
+        // 3. Simple animation for category cards on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+
+</html>

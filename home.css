@@ -1,0 +1,460 @@
+/* --- 1. VARIABLES & RESET --- */
+:root {
+    --primary-blue: #00BFFF;
+    /* Sky Blue */
+    --primary-hover: #009ACD;
+    --accent-teal: #20B2AA;
+    --bg-ice-blue: #F0F8FF;
+    /* Pale background */
+    --text-dark: #2C3E50;
+    /* Slate Blue */
+    --text-light: #5f6c7b;
+    --white: #ffffff;
+    --badge-red: #FF6B6B;
+    /* Red for badges */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-blue);
+    border-radius: 4px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Utility Class for Centering */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- 2. NAVBAR --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: transparent;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px 5%;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.logo img {
+    background-color: var(--primary-blue);
+    height: 50px;
+    width: 50px;
+    border-radius: 12px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Cart & Login */
+.cart-wrapper {
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--text-dark);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--badge-red);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    height: 18px;
+    width: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+}
+
+.login-link {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--primary-blue);
+    border: 1px solid var(--text-dark);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: var(--transition);
+}
+
+.login-link:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+    border-color: var(--primary-blue);
+}
+
+/* --- 3. HERO SECTION --- */
+.hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0, 191, 255, 0.2), rgba(44, 62, 80, 0.6)),
+        url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.95;
+    font-weight: 500;
+}
+
+.search-box {
+    background: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: var(--text-dark);
+    margin-left: 10px;
+}
+
+/* --- 4. SECTIONS & LAYOUT --- */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.bg-light {
+    background-color: var(--bg-ice-blue);
+    /* Updated to match your theme */
+}
+
+.section-title {
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: var(--text-light);
+}
+
+/* --- 5. CATEGORY GRID (Small Icons) --- */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-card {
+    background: var(--bg-ice-blue);
+    width: 100%;
+    padding: 30px 10px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    background: var(--white);
+}
+
+.category-card i {
+    font-size: 30px;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+/* --- 6. PRODUCT CARD GRID (Services) --- */
+.card-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    position: relative;
+    /* Essential for the badge */
+    width: 300px;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    text-align: left;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+/* Badge Styling */
+.badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--primary-blue);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.badge.red {
+    background: var(--badge-red);
+}
+
+.product-img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-rating {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--accent-teal);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.product-price {
+    font-size: 15px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.book-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--primary-blue);
+    background: transparent;
+    color: var(--primary-blue);
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.book-btn:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+
+/* --- 6. TRUST BANNER (Original Split Design) --- */
+.trust-banner {
+    background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+    padding: 50px 5%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    border-radius: 20px;
+    margin: 40px 5%;
+}
+
+.trust-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.trust-text h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.trust-points p {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.trust-points i {
+    color: var(--accent-teal);
+}
+
+.trust-img {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.trust-img img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+
+/* --- 7. FOOTER --- */
+footer {
+    background: var(--text-dark);
+    color: var(--white);
+    padding: 50px 5% 20px;
+    margin-top: 50px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    margin-bottom: 20px;
+    color: var(--primary-blue);
+}
+
+.footer-col li {
+    margin-bottom: 10px;
+    color: #b0c4de;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.footer-col li:hover {
+    color: var(--white);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #b0c4de;
+    font-size: 14px;
+}
+
+/* --- 8. RESPONSIVE --- */
+@media (max-width: 768px) {
+    .hero {
+        height: 60vh;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .navbar {
+        background: var(--white);
+        padding: 15px 5%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+        text-shadow: none;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
