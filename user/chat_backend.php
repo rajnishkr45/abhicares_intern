@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // 3. If No Match, Call Gemini API with Token Limit
-    $apiKey = "AIzaSyBnQfcx1ohjc-7BzF_wDPnEaRcz23xQGTg"; // REPLACE THIS
+    $apiKey = ""; // REPLACE THIS
     $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" . $apiKey;
 
     // JSON Payload with maxOutputTokens limited to 200
